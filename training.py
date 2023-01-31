@@ -50,10 +50,10 @@ def data_loader(folder_dir):
 
 
 image_dataset = data_loader(
-    "/Users/gohyuhan/Downloads/segmentation_full_body_tik_tok_2615_img/images")
+    "{{Enter your RGB dataset path here}}")
 
 mask_dataset = data_loader(
-    "/Users/gohyuhan/Downloads/segmentation_full_body_tik_tok_2615_img/masks")
+    "{{Enter your label dataset path here}}")
 
 
 image_dataset = np.array(image_dataset)
@@ -152,4 +152,4 @@ history = model.fit(image_dataset, labels_categories,
                     validation_data=(X_test, y_test),
                     shuffle=False)
 
-model.save('models/tiktokdataset-unet-model.h5py')
+model.save('models/{{enter desire name for your model}}.h5py')
