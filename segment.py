@@ -7,16 +7,16 @@ import cv2
 from PIL import Image
 from matplotlib import pyplot as plt
 
-model = load_model('models/supervisely-unet-model.h5py', compile=False)
+model = load_model('{{ enter your model path here }}', compile=False)
 
-test_image_path = '/Users/gohyuhan/Downloads/archive (4)/test_image'
+test_image_path = '{{ Enter path for test folder}}'
 
 
 def load_random_test_file(path):
     all_file = natsort.natsorted(os.listdir(path), reverse=False)
     random_num = random.randint(0, int(len(all_file)-1))
     print(all_file[random_num])
-    image = cv2.imread(path+'/'+all_file[4])
+    image = cv2.imread(path+'/'+all_file[random_num])
     ori_height = image.shape[0]
     ori_width = image.shape[1]
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -36,12 +36,3 @@ plt.figure(figsize=(12, 6))
 plt.imshow(predicted_img)
 plt.show()
 
-
-cv2.imwrite(
-    '/Users/gohyuhan/Downloads/instance-level_human_parsing/Training/256mask.png', predicted_img)
-im = cv2.imread(
-    '/Users/gohyuhan/Downloads/instance-level_human_parsing/Training/256mask.png')
-im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-#im = cv2.resize(im, (w, h))
-cv2.imwrite(
-    '/Users/gohyuhan/Downloads/instance-level_human_parsing/Training/256mask.png', im)
