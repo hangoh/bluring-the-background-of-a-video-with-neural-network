@@ -31,9 +31,9 @@ while run:
         mask_img = np.argmax(mask, axis=3)[0, :, :]
 
         cv2.imwrite(
-            '/Users/gohyuhan/Downloads/instance-level_human_parsing/Training/256mask.png', mask_img)
+            '256mask.png', mask_img)
         mask_im = cv2.imread(
-            '/Users/gohyuhan/Downloads/instance-level_human_parsing/Training/256mask.png')
+            '256mask.png')
         mask_im = cv2.cvtColor(mask_im, cv2.COLOR_BGR2RGB)
         mask_im = cv2.resize(mask_im, (width, height))
         mask_im[np.all(mask_im == 1, axis=-1)] = 255
@@ -51,6 +51,8 @@ while run:
         print(result)
         cv2.imshow('', result)
         make_video.write(result)
+         os.removedirs(
+            '256mask.png')
         key = cv2.waitKey(10)
         if key == 27:
             break
